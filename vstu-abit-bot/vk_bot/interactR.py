@@ -260,15 +260,27 @@ def interactR(vk, longpoll, event):
     daNetKeyboard = {
         "one_time": True,
         "buttons": [
-            [
-                getButton("Да", color="positive"),
-                getButton("Нет", color="negative")
-            ]
+            [getButton("Я выпускник школы", color="primary")],
+            [getButton("Я выпускник колледжа", color="primary")],
+            [getButton("Я выпускник вуза", color="primary")],
+            [getButton("Я студент другого вуза", color="primary")],
+            [getButton("Я ученик школы", color="primary")]
         ]
     }
 
     daNetKeyboard = json.dumps(daNetKeyboard, ensure_ascii=False).encode("utf-8")
     daNetKeyboard = str(daNetKeyboard.decode("utf-8"))
+
+    yesNoKeyboard = {
+        "one_time": True,
+        "buttons": [
+            [getButton("Да", color="positive")],
+            [getButton("Нет", color="negative")]
+        ]
+    }
+
+    yesNoKeyboard = json.dumps(yesNoKeyboard, ensure_ascii=False).encode("utf-8")
+    yesNoKeyboard = str(yesNoKeyboard.decode("utf-8"))
 
     budgetKeyboard = {
         "one_time": True,
@@ -316,20 +328,20 @@ def interactR(vk, longpoll, event):
     sbros1Keyboard = str(sbros1Keyboard.decode("utf-8"))
 
     vk.method("messages.send",
-              {"peer_id": event.peer_id, "message": "Вы являетесь выпускником школы?",
+              {"peer_id": event.peer_id, "message": "Кем вы являетесь?",
                "random_id": 0, "keyboard": daNetKeyboard})
 
     while flag == 0:
         for event in longpoll.listen():
             if event.to_me:
                 if event.type == VkEventType.MESSAGE_NEW:
-                    if "Да" in event.text or royal == 1:
+                    if "Я выпускник школы" in event.text or royal == 1:
                         if royal == 0:
-                            event.text = ""
+                            event.text = "Я выпускник школы"
                             vk.method("messages.send",
                                       {"peer_id": event.peer_id, "message": "Вы сдавали в качестве экзаменов ЕГЭ профильную \n"
                                                                             "математику и физику?",
-                                       "random_id": 0, "keyboard": daNetKeyboard})
+                                       "random_id": 0, "keyboard": yesNoKeyboard})
                         if "Да" in event.text and royal == 1:
                             ############################################################
                             event.text = ""
@@ -361,7 +373,7 @@ def interactR(vk, longpoll, event):
                             vk.method("messages.send",
                                       {"peer_id": event.peer_id, "message": "Вы сдавали в качестве экзаменов ЕГЭ профильную \n"
                                                                             "математику и физику?",
-                                       "random_id": 0, "keyboard": daNetKeyboard})
+                                       "random_id": 0, "keyboard": yesNoKeyboard})
                         elif "Информационный режим" in event.text:
                             inID = "start"
                             return inID
@@ -374,7 +386,7 @@ def interactR(vk, longpoll, event):
                         elif "Интерактивный режим" in event.text:
                             royal = 0
                             vk.method("messages.send",
-                                      {"peer_id": event.peer_id, "message": "Вы являетесь выпускником школы?",
+                                      {"peer_id": event.peer_id, "message": "Кем вы являетесь?",
                                        "random_id": 0, "keyboard": daNetKeyboard})
                         else:
                             if royal != 0:
@@ -382,14 +394,29 @@ def interactR(vk, longpoll, event):
                                           {"peer_id": event.peer_id, "message": "Я вас не понимаю. Нажмите на одну из кнопок ниже.\n"
                                                                                 "Вы сдавали в качестве экзаменов ЕГЭ профильную \n"
                                                                                 "математику и физику?",
-                                           "random_id": 0, "keyboard": daNetKeyboard})
+                                           "random_id": 0, "keyboard": yesNoKeyboard})
                             royal = 1
 
-                    elif "Нет" in event.text:
+                    elif "Я выпускник колледжа" in event.text:
                         vk.method("messages.send",
                                   {"peer_id": event.peer_id, "message": "Извините, в данной версии чат-бота доступен "
                                                                         "функционал только для выпускников школ",
                                    "random_id": 0, "keyboard": sbros1Keyboard})
+                    elif "Я выпускник вуза" in event.text:
+                        vk.method("messages.send",
+                                  {"peer_id": event.peer_id, "message": "Извините, в данной версии чат-бота доступен "
+                                                                        "функционал только для выпускников школ",
+                                   "random_id": 0, "keyboard": sbros1Keyboard})
+                    elif "Я студент другого вуза" in event.text:
+                        vk.method("messages.send",
+                                  {"peer_id": event.peer_id, "message": "Извините, в данной версии чат-бота доступен "
+                                                                        "функционал только для выпускников школ",
+                                   "random_id": 0, "keyboard": sbros1Keyboard})
+                    elif "Я ученик школы" in event.text:
+                        vk.method("messages.send",
+                                  {"peer_id": event.peer_id, "message": "Извините, в данной версии чат-бота доступен "
+                                                                        "функционал только для выпускников школ",
+                                   "random_id": 0, "keyboard": sbros1Keyboard})                    
                         #event.text = ""
                         #vk.method("messages.send",
                                   #{"peer_id": event.peer_id, "message": "Что вас интересует?",
@@ -405,11 +432,11 @@ def interactR(vk, longpoll, event):
                         return inID
                     elif "Назад" in event.text:
                         vk.method("messages.send",
-                                  {"peer_id": event.peer_id, "message": "Вы являетесь выпускником школы?",
+                                  {"peer_id": event.peer_id, "message": "Кем вы являетесь?",
                                    "random_id": 0, "keyboard": daNetKeyboard})
                     else:
                         event.text = ""
                         vk.method("messages.send",
                                   {"peer_id": event.peer_id, "message": "Я вас не понимаю. Нажмите на одну из кнопок ниже.\n"
-                                                                        "Вы являетесь выпускником школы?",
+                                                                        "Кем вы являетесь?",
                                    "random_id": 0, "keyboard": daNetKeyboard})
