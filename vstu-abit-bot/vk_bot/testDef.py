@@ -3,12 +3,12 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from interactR import interactR
 # Для объявления клавиатуры, необходимо объявление JSON
 import json
-# Вызов моих функций
+# Вызов функций
 from informR import testdef
 from informR import getButton
 
 # Объявление vk
-vk = vk_api.VkApi(token="f8212de39f245851308e939775829425b122217a207919f6ad1c7a87018059dd32bf90d3aed02db13e305")
+vk = vk_api.VkApi(token="1")
 
 vk._auth_token()
 vk.get_api()
