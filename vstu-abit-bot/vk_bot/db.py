@@ -1,17 +1,5 @@
 import pymysql
-
-# Создание подключения к БД
-def getConnection():
-     
-    # Параметры соединения
-    connection = pymysql.connect(host='localhost',
-                                 user='1',
-                                 password='1',                             
-                                 db='1',
-                                 charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor
-                                 )
-    return connection
+from dbConnect import *
 
 def add_dot(id1, description, buttons):
     """ Добавить узел в таблицу узлов БД
@@ -31,7 +19,7 @@ def add_dot(id1, description, buttons):
             cursor.execute(dbInject, (id1, description, buttons))
             cursor.execute("""select * from dot;""")
             print(cursor.fetchall())
-            #connect.commit()
+            connect.commit()
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
@@ -138,7 +126,7 @@ def add_speciality(id1, name, min_points):
             cursor.execute(dbInject, (id1, name, min_points))
             cursor.execute("""select * from speciality;""")
             print(cursor.fetchall())
-         #   connect.commit()
+            connect.commit()
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
@@ -244,3 +232,29 @@ def delete_achievement(user_achievement, user_id):
         print("Ошибка")
     # Отсоединяемся от базы данных
     connect.close()
+
+# def delete_user(user, user_id):
+#     """Удалить пользователя из БД ctrl+/
+
+#     Аргументы:
+#     user - пользователь
+#     user_id - идентификатор пользователя в вк
+#     """
+#     # Подготавливаем SQL запрос для передачи его базе данных
+#     dbDelete = """delete from user where ege_points = %s and id = %s;"""
+#     # Соединяемся с базой данных
+#     connect = getConnection()
+
+#     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
+#     try:
+#         with connect.cursor() as cursor:
+#             cursor.execute(dbDelete, (user, user_id))
+#             cursor.execute("""select * from user;""")
+#             print(cursor.fetchall())
+#             connect.commit()
+#     # В случае неудачи оповещаем об ошибке
+#     except:
+#         print("Ошибка")
+#     # Отсоединяемся от базы данных
+#     connect.close()
+    
