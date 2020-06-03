@@ -1,49 +1,50 @@
 import pymysql
 from dbConnect import *
 
-def add_dot(id1, description, buttons):
-    """ Добавить узел в таблицу узлов БД
+# def add_dot(id1, description, buttons):
+#     """ Добавить узел в таблицу узлов БД
 
-    Аргументы:
-    id1 - идентификатор узла
-    description - описание кнопки
-    buttons - название кнопки
-    """
-    # Подготавливаем SQL запрос для передачи его базе данных
-    dbInject = """insert into dot (id, description, buttons) values (%s, %s, %s);"""
-    # Соединяемся с базой данных
-    connect = getConnection()
-    # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
-    try:
-        with connect.cursor() as cursor:
-            cursor.execute(dbInject, (id1, description, buttons))
-            cursor.execute("""select * from dot;""")
-            print(cursor.fetchall())
-            connect.commit()
-    # В случае неудачи оповещаем об ошибке
-    except:
-        print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
+#     Аргументы:
+#     id1 - идентификатор узла
+#     description - описание кнопки
+#     buttons - название кнопки
+#     """
+#     # Подготавливаем SQL запрос для передачи его базе данных
+#     dbInject = """insert into dot (id, description, buttons) values (%s, %s, %s);"""
+#     # Соединяемся с базой данных
+#     connect = getConnection()
+#     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
+#     try:
+#         with connect.cursor() as cursor:
+#             cursor.execute(dbInject, (id1, description, buttons))
+#             cursor.execute("""select * from dot;""")
+#             print(cursor.fetchall())
+#             connect.commit()
+#     # В случае неудачи оповещаем об ошибке
+#     except:
+#         print("Ошибка")
+#     # Отсоединяемся от базы данных
+#     connect.close()
 
-def add_user(id1, status, ege_points, user_dot):
+def add_user(id1, status, ege_points, position, old_position):
     """ Добавить пользователя в таблицу пользователей в БД
 
     Аргументы:
     id1 - идентификатор пользователя в вк
     status - категория пользователя
     ege_points - баллы ЕГЭ пользователя
-    user_dot - узел, в которым находится пользователь
+    position - нынешняя позиция пользователя
+    old_position - позиция, в которой находился пользователь на прошлом шаге
     """
     # Подготавливаем SQL запрос для передачи его базе данных
-    dbInject = """insert into user (id, status, ege_points, user_dot) values (%s, %s, %s, %s);"""
+    dbInject = """insert into user (id, status, ege_points, position, old_position) values (%s, %s, %s, %s, %s);"""
     # Соединяемся с базой данных
     connect = getConnection()
 
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (id1, status, ege_points, user_dot))
+            cursor.execute(dbInject, (id1, status, ege_points, position, old_position))
             cursor.execute("""select * from user;""")
             print(cursor.fetchall())
             connect.commit()
