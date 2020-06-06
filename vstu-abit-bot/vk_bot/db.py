@@ -54,7 +54,7 @@ def add_user(id1, status, ege_points, position, old_position):
     # Отсоединяемся от базы данных
     connect.close()
 
-def add_exam(id1, id_user, name, points):
+def add_exam(id_user, name, points, connect):
     """ Добавить экзамен в таблицу экзаменов в БД
 
     Аргументы:
@@ -64,24 +64,20 @@ def add_exam(id1, id_user, name, points):
     points - баллы за экзамен
     """
     # Подготавливаем SQL запрос для передачи его базе данных
-    dbInject = """insert into exam (id, id_user, name, points) values (%s, %s, %s, %s);"""
-    # Соединяемся с базой данных
-    connect = getConnection()
+    dbInject = """insert into exam (id_user, name, points) values (%s, %s, %s);"""
 
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (id1, id_user, name, points))
+            cursor.execute(dbInject, (str(id_user), name, str(points)))
             cursor.execute("""select * from exam;""")
             print(cursor.fetchall())
             connect.commit()
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
-def add_achievement(id1, id_user, name, points):
+def add_achievement(id_user, name, points, connect):
     """ Добавить индивидуальное достижение в таблицу индивидуальных достижений в БД
 
     Аргументы:
@@ -91,22 +87,18 @@ def add_achievement(id1, id_user, name, points):
     points - баллы за индивидуальное достижение
     """
     # Подготавливаем SQL запрос для передачи его базе данных
-    dbInject = """insert into achievement (id, id_user, name, points) values (%s, %s, %s, %s);"""
-    # Соединяемся с базой данных
-    connect = getConnection()
+    dbInject = """insert into achievement (id_user, name, points) values (%s, %s, %s);"""
 
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (id1, id_user, name, points))
+            cursor.execute(dbInject, (str(id_user), name, str(points)))
             cursor.execute("""select * from achievement;""")
             print(cursor.fetchall())
             connect.commit()
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
 def add_speciality(id1, name, min_points):
     """ Добавить направление в таблицу направлений в БД
@@ -234,6 +226,58 @@ def delete_achievement(user_achievement, user_id):
     # Отсоединяемся от базы данных
     connect.close()
 
+def user_update_position(vk_id, location, connect):
+    """Обновить позицию пользователя
+
+    Аргументы:
+    vk_id - идентификатор пользователя в вк
+    location - позиция пользователя 
+    connect - соединение с БД
+    """
+    dbUpdate = """update user set position = %s where id = %s;"""
+
+    try:
+        with connect.cursor() as cursor:
+            cursor.execute(dbUpdate, (location, str(vk_id)))
+            connect.commit()
+    except:
+        print("Ошибка при обновлении позиции пользователя")
+
+
+def user_update_old_position(vk_id, old_location, connect):
+    """Обновить прежнюю позицию пользователя
+
+    Аргументы:
+    vk_id - идентификатор пользователя в вк
+    old_location - прежняя позиция пользователя 
+    connect - соединение с БД
+    """
+    dbUpdate = """update user set old_position = %s where id = %s;"""
+
+    try:
+        with connect.cursor() as cursor:
+            cursor.execute(dbUpdate, (old_location, str(vk_id)))
+            connect.commit()
+    except:
+        print("Ошибка при обновлении прежней позиции пользователя")
+
+
+def get_old_loc(vk_id, connect):
+    """Получить прежнюю позицию пользователя
+
+    Аргументы:
+    vk_id - идентификатор пользователя в вк
+    connect - соединение с БД
+    """
+    dbSelect = """select * from user where id = %s"""
+
+    try:
+        with connect.cursor() as cursor:
+            cursor.execute(dbSelect, str(vk_id))
+            return cursor.fetchall()[0]["old_position"]
+    except:
+        print("Ошибка при получении прежней позиции пользователя")
+    return 0
 # def delete_user(user, user_id):
 #     """Удалить пользователя из БД ctrl+/
 

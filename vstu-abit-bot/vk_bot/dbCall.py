@@ -29,3 +29,5 @@ from db import *
 #add_user('2','school_grad','200','2121','2117')
 #add_user('3','school_grad','230','2151','2141')
 #update_user_ege_points ('203','2')
+#add_user('185472122','school_grad','216','0','0')
+#user_update_position ('185472122','40',)
