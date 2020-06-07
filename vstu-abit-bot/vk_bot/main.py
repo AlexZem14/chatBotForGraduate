@@ -38,12 +38,17 @@ while True:
                         cursor.execute(messageDbBot, str(vk_id))
                         # Передать информацию о пользователе переменной
                         loc = cursor.fetchall()
-                        # Получить позицию пользователя
-                        loc = loc[0]["position"]
-                        # Вычислить новую позицию пользователя и среагировать на сообщение
-                        new_loc = nextNode(loc, message, connect, vk_id)
+                        if message.lower() == "начать" and len(loc) == 0:
+                            add_user(vk_id, None, None, 501, 501, connect=connect)
+                            new_loc = 501
+                            loc = new_loc
+                        else:
+                            # Получить позицию пользователя
+                            loc = loc[0]["position"]
+                            # Вычислить новую позицию пользователя и среагировать на сообщение
+                            new_loc = nextNode(loc, message, connect, vk_id)
                         # Вычислить сообщения для отправки пользователю
-                        new_mess = newMess(new_loc)
+                        new_mess = newMess(new_loc,vk_id,connect)
                         # Обновить позицию пользователя
                         user_update_position( vk_id, new_loc, connect)
                         # Если значения прежней позиции и новой не совпадают

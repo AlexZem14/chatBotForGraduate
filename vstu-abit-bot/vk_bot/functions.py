@@ -1,6 +1,6 @@
 import json
 from db import get_old_loc, add_achievement, add_exam
-#from sumEgePoints import *
+from points import *
 
 
 def nextNode(location, message, connect = None, vk_id=None):
@@ -12,15 +12,232 @@ def nextNode(location, message, connect = None, vk_id=None):
     :param vk_id: идентификатор пользователя в вк
     :return: вернуть следующую позицию пользователя
     """
+    # Если тип узла означает начало работы
+    if location == 501:
+        # Действия, при сообщении
+        if message.lower() == "понял. продолжим!":
+            # Записать новую позицию
+            next_loc = 0
+        else:
+            print("Error in nextNode")
+            # При ошибке указать прежнюю позицию
+            next_loc = location
+
+    # if	location == 5010:
+    #     if message == "Привет":
+    #         next_loc = 0
+    #     else:
+    #         next_loc = location
+
     if location == 0:
-        if message == "Интерактивный режим":
+        if message == "Информационный режим":
+            next_loc = 1
+        elif message == "Интерактивный режим":
             next_loc = 10
         else:
             next_loc = location
 
+    # Информационный режим
+    if location == 1:
+        if message == "Об университете":
+            next_loc = 101
+        elif message == "Абитуриентам":
+           next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 20:
+        if message == "Проходные баллы прошлых лет":
+            next_loc = 21
+        elif message == "Индивидуальные достижения":
+            next_loc = 22
+        elif message == "Документы для поступления":
+            next_loc = 23
+        elif message == "Стоимость обучения":
+            next_loc = 24
+        elif message == "Сведения о льготах":
+            next_loc = 25
+        elif message == "Подготовка к поступлению":
+            next_loc = 26
+        elif message == "Календарь абитуриента":
+            next_loc = 27
+        elif message == "Общежитие":
+            next_loc = 28
+        elif message == "Количество мест":
+            next_loc = 29
+        elif message == "Вступительные испытания":
+            next_loc = 30
+        elif message == "Назад":
+            next_loc = 1
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 21:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+    
+    if location == 22:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 23:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 24:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 25:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 26:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+    
+    if location == 27:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 28:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 29:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 30:
+        if message == "Назад":
+            next_loc = 20
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 101:
+        if message == "Направления":
+            next_loc = 110
+        elif message == "Подробнее об университете":
+            next_loc = 120
+        elif message == "Контакты и структура":
+            next_loc = 130
+        elif message == "Назад":
+            next_loc = 1
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+    
+    if location == 110:
+        if message == "Информатика и вычислительная техника":
+            next_loc = 1110
+        elif message == "Программная инженерия":
+            next_loc = 1120
+        elif message == "Физика":
+            next_loc = 1130
+        elif message == "Приборостроение":
+            next_loc = 1140
+        elif message == "Назад":
+            next_loc = 101
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 120:
+        if message == "Назад":
+            next_loc = 101
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 130:
+        if message == "Назад":
+            next_loc = 101
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 1110:
+        if message == "Назад":
+            next_loc = 110
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 1120:
+        if message == "Назад":
+            next_loc = 110
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 1130:
+        if message == "Назад":
+            next_loc = 110
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+
+    if location == 1140:
+        if message == "Назад":
+            next_loc = 110
+        elif message == "Интерактивный режим":
+            next_loc = 10
+        else:
+            next_loc = location
+    
+    # Интерактивный режим
     elif location == 10:
         if message == "Выпускник школы":
-            next_loc = 20
+            next_loc = 221
         elif message == "Студент другого вуза":
             next_loc = 30
         elif message == "Выпускник коледжа":
@@ -44,9 +261,9 @@ def nextNode(location, message, connect = None, vk_id=None):
         else:
             next_loc = location
 
-    elif location == 20:
+    elif location == 221:
         if message == "Да":
-            next_loc = 221
+            next_loc = 241
         elif message == "Нет":
             next_loc = 222
         else:
@@ -60,7 +277,7 @@ def nextNode(location, message, connect = None, vk_id=None):
 
     elif location == 2116:
         if message == "Понял. Продолжим!":
-            next_loc = 2117
+            next_loc = 2118
         else:
             next_loc = location
     
@@ -97,7 +314,7 @@ def nextNode(location, message, connect = None, vk_id=None):
 
     elif location == 742:
         if message == "Понял. Продолжим!":
-            next_loc = 2117
+            next_loc = 2118
         else:
             next_loc = location
     # elif location == 40:
@@ -118,13 +335,13 @@ def nextNode(location, message, connect = None, vk_id=None):
         else:
             next_loc = location
 
-    elif location == 221:
-        if message == "Да":
-            next_loc = 241
-        elif message == "Нет":
-            next_loc = 2117
-        else:
-            next_loc = location
+    # elif location == 221:
+    #     if message == "Да":
+    #         next_loc = 241
+    #     elif message == "Нет":
+    #         next_loc = 2118
+    #     else:
+    #         next_loc = location
 
     elif location == 222:
         if message == "Назад":
@@ -136,11 +353,12 @@ def nextNode(location, message, connect = None, vk_id=None):
         if message == "Да":
             next_loc = 641
         elif message == "Нет":
-            next_loc = 2117
+            next_loc = 2118
         else:
             next_loc = location
 
     elif location == 241:
+        deleteAllPoints(vk_id,connect)
         if message == "Да":
             add_achievement(vk_id, "Золотая медаль", 10, connect)
             next_loc = 2111
@@ -151,7 +369,7 @@ def nextNode(location, message, connect = None, vk_id=None):
 
     elif location == 641:
         if message == "Понял. Продолжим!":
-            next_loc = 2117
+            next_loc = 2118
         else:
             next_loc = location
 
@@ -174,6 +392,7 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = location
 
     elif location == 2111:
+        sumAchPoints(vk_id,connect)
         if message.isdigit() is True:
             if 27 <= int(message) <= 100:
                 add_exam(vk_id, "Математика", int(message), connect)
@@ -197,7 +416,7 @@ def nextNode(location, message, connect = None, vk_id=None):
         if message.isdigit() is True:
             if 36 <= int(message) <= 100:
                 add_exam(vk_id, "Русский", int(message), connect)
-                #sumEgePoints(vk_id,connect)
+                sumEgePoints(vk_id,connect)
                 next_loc = 2117
             else:
                 next_loc = location
@@ -205,6 +424,12 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = location
 
     elif location == 2117:
+        if message == "Понял. Продолжим!":
+            next_loc = 2118
+        else:
+            next_loc = location
+
+    elif location == 2118:
         if message == "Подробнее о направлениях":
             next_loc = 2121
         elif message == "Подробнее об стоимости обучения":
@@ -354,7 +579,7 @@ def nextNode(location, message, connect = None, vk_id=None):
 
     return next_loc
 
-def newMess(loc_type):
+def newMess(loc_type,vk_id,connect):
     """
     Создать сообщение для пользователя
     :param location: новая позиция пользователя
@@ -365,19 +590,348 @@ def newMess(loc_type):
     """
     # Переменная для хранения текста
     text = ""
-    if loc_type == 0:
-        text = "Добрый день, что вас интересует"
 
+    # Если тип узла относится к началу работы с программой
+    # if loc_type == 5010:
+    #     text = "Привет"
+
+    #     startKeyboard = None
+
+    if loc_type == 501:
+        text = "Здесь есть 2 режима"
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Интерактивный режим", color="primary")]
+                [getButton("Понял. Продолжим!", color="primary")]
             ]
         }
 
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
+    if loc_type == 0:
+        text = "Добрый день, что вас интересует"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Информационный режим", color="primary")],
+                [getButton("Интерактивный режим", color="primary")]
+
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+    
+    # Информационный режим
+    if loc_type == 1:
+        text = "Что вас интересует?"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Об университете", color="primary")],
+                [getButton("Абитуриентам", color="primary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 20:
+        text = "Что вас интересует?"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+            [getButton("Проходные баллы прошлых лет", color="primary")],
+            [getButton("Индивидуальные достижения", color="primary")],
+            [
+                getButton("Документы для поступления", color="primary"),
+                getButton("Стоимость обучения", color="primary")
+            ],
+            [
+                getButton("Сведения о льготах", color="primary"),
+                getButton("Подготовка к поступлению", color="primary")
+            ],
+            [
+                getButton("Календарь абитуриента", color="primary"),
+                getButton("Общежитие", color="primary")
+            ],
+            [getButton("Количество мест", color="primary")],
+            [getButton("Вступительные испытания", color="primary")],
+            [
+                getButton("Назад", color="secondary"),
+                getButton("Интерактивный режим", color="secondary")
+            ]
+        ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 21:
+        text = "Проходные баллы прошлых лет"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 22:
+        text = "Индивидуальные достижения"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 23:
+        text = "Документы для поступления"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 24:
+        text = "Стоимость обучения"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 25:
+        text = "Сведения о льготах"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 26:
+        text = "Подготовка к поступлению"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 27:
+        text = "Календарь абитуриента"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 28:
+        text = "Общежитие"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 29:
+        text = "Количество мест"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 30:
+        text = "Вступительные испытания"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 101:
+        text = "Что интересует?"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Направления", color="primary")],
+                [getButton("Подробнее об университете", color="primary")],
+                [getButton("Контакты и структура", color="primary")],
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 110:
+        text = "Направления"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Информатика и вычислительная техника", color="primary")],
+                [getButton("Программная инженерия", color="primary")],
+                [getButton("Физика", color="primary")],
+                [getButton("Приборостроение", color="primary")],
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 120:
+        text = "Подробнее об университете"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 130:
+        text = "Контакты и структура"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 1110:
+        text = "Информатика и вычислительная техника"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 1120:
+        text = "Программная инженерия"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 1130:
+        text = "Физика"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    if loc_type == 1140:
+        text = "Приборостроение"
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Назад", color="secondary")],
+                [getButton("Интерактивный режим", color="secondary")]
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    # Интерактивный режим
     elif loc_type == 10:
         text = "Кем вы являетесь?"
 
@@ -395,7 +949,7 @@ def newMess(loc_type):
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
-    elif loc_type == 20:
+    elif loc_type == 221:
         text = "Вы сдавали/будете сдавать в качестве экзаменов ЕГЭ профильную математику и физику?"
 
         startKeyboard = {
@@ -477,19 +1031,19 @@ def newMess(loc_type):
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
-    elif loc_type == 221:
-        text = "Вы уже сдали ЕГЭ?"
+    # elif loc_type == 221:
+    #     text = "Вы уже сдали ЕГЭ?"
 
-        startKeyboard = {
-            "one_time": True,
-            "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
-            ]
-        }
+    #     startKeyboard = {
+    #         "one_time": True,
+    #         "buttons": [
+    #             [getButton("Да", color="primary")],
+    #             [getButton("Нет", color="primary")]
+    #         ]
+    #     }
 
-        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
-        startKeyboard = str(startKeyboard.decode("utf-8"))
+    #     startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+    #     startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 222:
         text = "Извините, вам не подходит наш факультет"
@@ -644,6 +1198,19 @@ def newMess(loc_type):
         startKeyboard = None
 
     elif loc_type == 2117:
+        text = "У вас " + str(get_all_points(vk_id, connect)) + " баллов."
+
+        startKeyboard = {
+            "one_time": True,
+            "buttons": [
+                [getButton("Понял. Продолжим!", color="primary")],
+            ]
+        }
+
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    elif loc_type == 2118:
         text = "Хотите узнать подробней об одном из направлений/стоимости обучения?"
 
         startKeyboard = {

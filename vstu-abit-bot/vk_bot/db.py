@@ -26,7 +26,7 @@ from dbConnect import *
 #     # Отсоединяемся от базы данных
 #     connect.close()
 
-def add_user(id1, status, ege_points, position, old_position):
+def add_user(id1, status, ege_points, position, old_position, connect):
     """ Добавить пользователя в таблицу пользователей в БД
 
     Аргументы:
@@ -35,11 +35,10 @@ def add_user(id1, status, ege_points, position, old_position):
     ege_points - баллы ЕГЭ пользователя
     position - нынешняя позиция пользователя
     old_position - позиция, в которой находился пользователь на прошлом шаге
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into user (id, status, ege_points, position, old_position) values (%s, %s, %s, %s, %s);"""
-    # Соединяемся с базой данных
-    connect = getConnection()
 
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
@@ -51,17 +50,15 @@ def add_user(id1, status, ege_points, position, old_position):
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
 def add_exam(id_user, name, points, connect):
     """ Добавить экзамен в таблицу экзаменов в БД
 
     Аргументы:
-    id1 - идентификатор экзамена
     id_user - идентификатор пользователя в вк
     name - название экзамена
     points - баллы за экзамен
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into exam (id_user, name, points) values (%s, %s, %s);"""
@@ -81,10 +78,10 @@ def add_achievement(id_user, name, points, connect):
     """ Добавить индивидуальное достижение в таблицу индивидуальных достижений в БД
 
     Аргументы:
-    id1 - идентификатор индивидуального достижения
     id_user - идентификатор пользователя в вк
     name - название индивидуального достижения
     points - баллы за индивидуальное достижение
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into achievement (id_user, name, points) values (%s, %s, %s);"""
@@ -278,22 +275,22 @@ def get_old_loc(vk_id, connect):
     except:
         print("Ошибка при получении прежней позиции пользователя")
     return 0
-# def delete_user(user, user_id):
+
+# def delete_user(user_id):
 #     """Удалить пользователя из БД ctrl+/
 
 #     Аргументы:
-#     user - пользователь
 #     user_id - идентификатор пользователя в вк
 #     """
 #     # Подготавливаем SQL запрос для передачи его базе данных
-#     dbDelete = """delete from user where ege_points = %s and id = %s;"""
+#     dbDelete = """delete from user where id = %s;"""
 #     # Соединяемся с базой данных
 #     connect = getConnection()
 
 #     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
 #     try:
 #         with connect.cursor() as cursor:
-#             cursor.execute(dbDelete, (user, user_id))
+#             cursor.execute(dbDelete, (user_id))
 #             cursor.execute("""select * from user;""")
 #             print(cursor.fetchall())
 #             connect.commit()
