@@ -991,8 +991,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет", color="negative")]
             ]
         }
 
@@ -1031,7 +1031,7 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Главное меню", color="primary")]
+                [getButton("Главное меню", color="secondary")]
             ]
         }
 
@@ -1059,8 +1059,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет", color="negative")]
             ]
         }
 
@@ -1087,7 +1087,7 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Назад", color="primary")]
+                [getButton("Назад", color="secondary")]
             ]
         }
 
@@ -1100,8 +1100,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет", color="negative")]
             ]
         }
 
@@ -1128,8 +1128,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет", color="negative")]
             ]
         }
 
@@ -1196,8 +1196,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет", color="negative")]
             ]
         }
 
@@ -1210,8 +1210,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет", color="negative")]
             ]
         }
 
@@ -1254,7 +1254,7 @@ def newMess(loc_type,vk_id,connect):
             "buttons": [
                 [getButton("Подробнее о направлениях", color="primary")],
                 [getButton("Подробнее о стоимости обучения", color="primary")],
-                [getButton("Не хочу", color="primary")]
+                [getButton("Не хочу", color="negative")]
             ]
         }
 
@@ -1268,8 +1268,8 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Подробнее о направлениях", color="primary")],
-                [getButton("Да", color="primary")],
-                [getButton("Нет, я уже узнал все что хотел", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет, я уже узнал все что хотел", color="negative")]
                 #[getButton("Назад", color="primary")]
             ]
         }
@@ -1301,7 +1301,7 @@ def newMess(loc_type,vk_id,connect):
             "buttons": [
                 [getButton("Понял. Продолжим!", color="primary")],
                 [getButton("Подробнее о стоимости обучения", color="primary")],
-                [getButton("Назад", color="primary")]
+                [getButton("Назад", color="secondary")]
             ]
         }
 
@@ -1316,7 +1316,7 @@ def newMess(loc_type,vk_id,connect):
             "buttons": [
                 [getButton("Понял. Продолжим!", color="primary")],
                 [getButton("Подробнее о стоимости обучения", color="primary")],
-                [getButton("Назад", color="primary")]
+                [getButton("Назад", color="secondary")]
             ]
         }
 
@@ -1331,7 +1331,7 @@ def newMess(loc_type,vk_id,connect):
             "buttons": [
                 [getButton("Понял. Продолжим!", color="primary")],
                 [getButton("Подробнее о стоимости обучения", color="primary")],
-                [getButton("Назад", color="primary")]
+                [getButton("Назад", color="secondary")]
             ]
         }
 
@@ -1346,7 +1346,7 @@ def newMess(loc_type,vk_id,connect):
             "buttons": [
                 [getButton("Понял. Продолжим!", color="primary")],
                 [getButton("Подробнее о стоимости обучения", color="primary")],
-                [getButton("Назад", color="primary")]
+                [getButton("Назад", color="secondary")]
             ]
         }
 
@@ -1375,8 +1375,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет, я уже узнал все что хотел", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет, я уже узнал все что хотел", color="negative")]
             ]
         }
 
@@ -1407,8 +1407,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Назад", color="primary")],
-                [getButton("Главное меню", color="primary")]
+                [getButton("Назад", color="secondary")],
+                [getButton("Главное меню", color="secondary")]
             ]
         }
 
@@ -1421,8 +1421,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Назад", color="primary")],
-                [getButton("Главное меню", color="primary")]
+                [getButton("Назад", color="secondary")],
+                [getButton("Главное меню", color="secondary")]
             ]
         }
 
@@ -1435,8 +1435,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Назад", color="primary")],
-                [getButton("Главное меню", color="primary")]
+                [getButton("Назад", color="secondary")],
+                [getButton("Главное меню", color="secondary")]
             ]
         }
 
@@ -1449,8 +1449,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Назад", color="primary")],
-                [getButton("Главное меню", color="primary")]
+                [getButton("Назад", color="secondary")],
+                [getButton("Главное меню", color="secondary")]
             ]
         }
 
@@ -1491,8 +1491,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет", color="primary")]
+                [getButton("Да", color="positive")],
+                [getButton("Нет", color="negative")]
             ]
         }
         
@@ -1505,8 +1505,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Назад", color="primary")],
-                [getButton("Главное меню", color="primary")]
+                [getButton("Назад", color="secondary")],
+                [getButton("Главное меню", color="secondary")]
             ]
         }
 
