@@ -148,11 +148,33 @@ def update_user_ege_points(ege_points, id1):
     # Отсоединяемся от базы данных
     connect.close()
 
+def update_user_status(status, id1, connect):
+    """Обновить статус пользователя в БД
+
+    Аргументы:
+    status - категория пользователя
+    id1 - идентификатор пользователя в вк
+    connect - соединение с БД
+    """
+    # Подготавливаем SQL запрос для передачи его базе данных
+    dbUpdate = """update user set status = %s where id = %s;"""
+
+    # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
+    try:
+        with connect.cursor() as cursor:
+            cursor.execute(dbUpdate, (status, id1))
+            cursor.execute("""select * from user;""")
+            print(cursor.fetchall())
+            connect.commit()
+    # В случае неудачи оповещаем об ошибке
+    except:
+        print("Ошибка")
+
 def update_exam_points(points, id1):
     """Обновить баллы за индивидуальное достижение пользователя в БД
 
     Аргументы:
-    ege_points - нынешнее баллы за индивидуальное достижение пользователя
+    points - нынешнее баллы за индивидуальное достижение пользователя
     id1 - идентификатор пользователя в вк
     """
     # Подготавливаем SQL запрос для передачи его базе данных

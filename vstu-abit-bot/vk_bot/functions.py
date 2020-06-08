@@ -1,5 +1,5 @@
 import json
-from db import get_old_loc, add_achievement, add_exam
+from db import get_old_loc, add_achievement, add_exam, update_user_status
 from points import *
 
 
@@ -237,14 +237,19 @@ def nextNode(location, message, connect = None, vk_id=None):
     # Интерактивный режим
     elif location == 10:
         if message == "Выпускник школы":
+            update_user_status('school_grad', vk_id, connect)
             next_loc = 221
         elif message == "Студент другого вуза":
+            update_user_status('each_univer_stud', vk_id, connect)
             next_loc = 30
-        elif message == "Выпускник коледжа":
+        elif message == "Выпускник колледжа":
+            update_user_status('college_grad', vk_id, connect)
             next_loc = 40
         elif message == "Выпускник вуза":
+            update_user_status('student_bach', vk_id, connect)
             next_loc = 50
         elif message == "Ученик школы":
+            update_user_status('school', vk_id, connect)
             next_loc = 60
         else:
             next_loc = location
@@ -392,9 +397,9 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = location
 
     elif location == 2111:
-        sumAchPoints(vk_id,connect)
         if message.isdigit() is True:
             if 27 <= int(message) <= 100:
+                sumAchPoints(vk_id, connect)
                 add_exam(vk_id, "Математика", int(message), connect)
                 next_loc = 2113
             else:
@@ -976,7 +981,7 @@ def newMess(loc_type,vk_id,connect):
             "buttons": [
                 [getButton("Выпускник школы", color="primary")],
                 [getButton("Студент другого вуза", color="primary")],
-                [getButton("Выпускник коледжа", color="primary")],
+                [getButton("Выпускник колледжа", color="primary")],
                 [getButton("Выпускник вуза", color="primary")],
                 [getButton("Ученик школы", color="primary")]
             ]
@@ -1234,8 +1239,8 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = None
 
     elif loc_type == 2117:
-        text = "У вас " + str(get_all_points(vk_id, connect)) + " баллов."
-
+        text = "У вас " + str(get_all_points(vk_id, connect)) + " баллов.\n"
+        text = text + choiceSpeciality(vk_id, connect)
         startKeyboard = {
             "one_time": True,
             "buttons": [

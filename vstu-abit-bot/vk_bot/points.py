@@ -77,3 +77,45 @@ def get_all_points(vk_id, connect):
     except:
         print("Ошибка при получении баллов ЕГЭ")
     return int(points)
+
+def choiceSpeciality(vk_id, connect):
+    selectDB = """select * from speciality"""
+    allPoints = get_all_points(vk_id, connect)
+    budget_list = []
+    contract_list = []
+    text = ""
+    try:
+        with connect.cursor() as cursor:
+            cursor.execute(selectDB)
+            spec = cursor.fetchall()
+            for i in range(len(spec)):
+                if allPoints >= spec[i]["min_points"]:
+                    budget_list.append(spec[i]["name"])
+                else:
+                    contract_list.append(spec[i]["name"])
+            # Записываем в сообщение сумму баллов
+            #text = "Сумма: " + str(allPoints)
+            # Если сумма баллов больше, чем максимум баллов среди направлений
+            if len(contract_list) == 0:
+                text = text + "\nОсновываясь на данных приемной комиссии за прошлый год, вы можете поступить на нашем " \
+                                    "факультете на все направления на бюджетной основе"
+            # Если сумма баллов меньше, чем минимум баллов среди направлений
+            elif len(budget_list) == 0:
+                text = text + "\nОсновываясь на данных приемной комиссии за прошлый год, вы можете поступить на наш " \
+                                    "факультет только на контрактной основе"
+            else:
+                text = text + "\nОсновываясь на данных приемной комиссии за прошлый год, вы можете поступить на нашем " \
+                                    "факультете на следующие направления на бюджетной основе:"
+                # Для всех направлений
+                # Сравниваем сумму баллов со значениями направлений
+                # Для распределений на бюджетные и контрактные основы
+                for i in range(len(budget_list)):
+                    text = text + "\n" + budget_list[i]
+                text = text + "\n\nНа контрактной основе:"
+                for i in range(len(contract_list)):
+                    text = text + "\n" + contract_list[i]
+
+            return text
+
+    except:
+        print("Ошибка при получении данных для выбора доступных направлений")
