@@ -432,10 +432,10 @@ def nextNode(location, message, connect = None, vk_id=None):
     elif location == 2118:
         if message == "Подробнее о направлениях":
             next_loc = 2121
-        elif message == "Подробнее об стоимости обучения":
+        elif message == "Подробнее о стоимости обучения":
             next_loc = 2122
         elif message == "Не хочу":
-            next_loc = 2135
+            next_loc = 2141
         else:
             next_loc = location
 
@@ -464,14 +464,50 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = location
 
     elif location == 2131:
+        if message == "Понял. Продолжим!":
+            next_loc = 2141
+        elif message == "Подробнее о стоимости обучения":
+            next_loc = 2122
+        elif message == "Назад":
+            next_loc = 2121
+        else:
+            next_loc = location
+
+    elif location == 2132:
+        if message == "Понял. Продолжим!":
+            next_loc = 2141
+        elif message == "Подробнее о стоимости обучения":
+            next_loc = 2122
+        elif message == "Назад":
+            next_loc = 2121
+        else:
+            next_loc = location
+
+    elif location == 2133:
+        if message == "Понял. Продолжим!":
+            next_loc = 2141
+        elif message == "Подробнее о стоимости обучения":
+            next_loc = 2122
+        elif message == "Назад":
+            next_loc = 2121
+        else:
+            next_loc = location
+    
+    elif location == 2134:
+        if message == "Понял. Продолжим!":
+            next_loc = 2141
+        elif message == "Подробнее о стоимости обучения":
+            next_loc = 2122
+        elif message == "Назад":
+            next_loc = 2121
+        else:
+            next_loc = location
+
+    elif location == 2141:
         if message == "Да":
             next_loc = 2151
         elif message == "Нет, я уже узнал все что хотел":
             next_loc = 0
-        elif message == "Назад":
-            next_loc = 2121
-        elif message == "Подробнее об стоимости обучения":
-            next_loc = 2122
         else:
             next_loc = location
 
@@ -482,7 +518,7 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = 0
         elif message == "Назад":
             next_loc = 2121
-        elif message == "Подробнее об стоимости обучения":
+        elif message == "Подробнее о стоимости обучения":
             next_loc = 2122
         else:
             next_loc = location
@@ -494,7 +530,7 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = 0
         elif message == "Назад":
             next_loc = 2121
-        elif message == "Подробнее об стоимости обучения":
+        elif message == "Подробнее о стоимости обучения":
             next_loc = 2122
         else:
             next_loc = location
@@ -506,22 +542,22 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = 0
         elif message == "Назад":
             next_loc = 2121
-        elif message == "Подробнее об стоимости обучения":
+        elif message == "Подробнее о стоимости обучения":
             next_loc = 2122
         else:
             next_loc = location
 
-    elif location == 2135:
-        if message == "Да":
-            next_loc = 2151
-        elif message == "Нет, я уже узнал все что хотел":
-            next_loc = 0
-        elif message == "Назад":
-            next_loc = 2121
-        elif message == "Подробнее об стоимости обучения":
-            next_loc = 2122
-        else:
-            next_loc = location
+    # elif location == 2135:
+    #     if message == "Да":
+    #         next_loc = 2151
+    #     elif message == "Нет, я уже узнал все что хотел":
+    #         next_loc = 0
+    #     elif message == "Назад":
+    #         next_loc = 2121
+    #     elif message == "Подробнее о стоимости обучения":
+    #         next_loc = 2122
+    #     else:
+    #         next_loc = location
 
     elif location == 2151:
         if message == "Документы для поступления":
@@ -1217,7 +1253,7 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Подробнее о направлениях", color="primary")],
-                [getButton("Подробнее об стоимости обучения", color="primary")],
+                [getButton("Подробнее о стоимости обучения", color="primary")],
                 [getButton("Не хочу", color="primary")]
             ]
         }
@@ -1258,14 +1294,13 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 2131:
-        text = "Информация о ПрИн\nВам что-то еще хотелось бы узнать?"
+        text = "Информация о ПрИн"
 
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет, я уже узнал все что хотел", color="primary")],
-                [getButton("Подробнее об стоимости обучения", color="primary")],
+                [getButton("Понял. Продолжим!", color="primary")],
+                [getButton("Подробнее о стоимости обучения", color="primary")],
                 [getButton("Назад", color="primary")]
             ]
         }
@@ -1274,14 +1309,13 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 2132:
-        text = "Информация о ИВТ\nВам что-то еще хотелось бы узнать?"
+        text = "Информация о ИВТ"
 
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет, я уже узнал все что хотел", color="primary")],
-                [getButton("Подробнее об стоимости обучения", color="primary")],
+                [getButton("Понял. Продолжим!", color="primary")],
+                [getButton("Подробнее о стоимости обучения", color="primary")],
                 [getButton("Назад", color="primary")]
             ]
         }
@@ -1290,14 +1324,13 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 2133:
-        text = "Информация о Физике\nВам что-то еще хотелось бы узнать?"
+        text = "Информация о Физике"
 
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет, я уже узнал все что хотел", color="primary")],
-                [getButton("Подробнее об стоимости обучения", color="primary")],
+                [getButton("Понял. Продолжим!", color="primary")],
+                [getButton("Подробнее о стоимости обучения", color="primary")],
                 [getButton("Назад", color="primary")]
             ]
         }
@@ -1306,14 +1339,13 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 2134:
-        text = "Информация о Приборостроении\nВам что-то еще хотелось бы узнать?"
+        text = "Информация о Приборостроении"
 
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Да", color="primary")],
-                [getButton("Нет, я уже узнал все что хотел", color="primary")],
-                [getButton("Подробнее об стоимости обучения", color="primary")],
+                [getButton("Понял. Продолжим!", color="primary")],
+                [getButton("Подробнее о стоимости обучения", color="primary")],
                 [getButton("Назад", color="primary")]
             ]
         }
@@ -1321,21 +1353,36 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
-    elif loc_type == 2135:
-        text = "Вам что-то еще хотелось бы узнать?"
+    # elif loc_type == 2135:
+    #     text = "Вам что-то еще хотелось бы узнать?"
+
+    #     startKeyboard = {
+    #         "one_time": True,
+    #         "buttons": [
+    #             [getButton("Да", color="primary")],
+    #             [getButton("Нет, я уже узнал все что хотел", color="primary")],
+    #             [getButton("Подробнее о стоимости обучения", color="primary")],
+    #             [getButton("Назад", color="primary")]
+    #         ]
+    #     }
+
+    #     startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+    #     startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    elif loc_type == 2141:
+        text = "Вам бы хотелось узнать что-то еще?"
 
         startKeyboard = {
             "one_time": True,
             "buttons": [
                 [getButton("Да", color="primary")],
-                [getButton("Нет, я уже узнал все что хотел", color="primary")],
-                [getButton("Подробнее об стоимости обучения", color="primary")],
-                [getButton("Назад", color="primary")]
+                [getButton("Нет, я уже узнал все что хотел", color="primary")]
             ]
         }
 
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
+
 
     elif loc_type == 2151:
         text = "Что именно вам хотелось бы узнать?"
