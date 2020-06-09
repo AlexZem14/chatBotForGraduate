@@ -1265,7 +1265,7 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = None
 
     elif loc_type == 2117:
-        text = "Сумма баллов: " + str(get_all_points(vk_id, connect)) + "\n"
+        text = "Сумма баллов: " + str(getAllPoints(vk_id, connect)) + "\n"
         text = text + choiceSpeciality(vk_id, connect)
         startKeyboard = {
             "one_time": True,

@@ -1,11 +1,11 @@
 import pymysql
 from dbConnect import *
 
-# def add_dot(id1, description, buttons):
+# def add_dot(id_user, description, buttons):
 #     """ Добавить узел в таблицу узлов БД
 
 #     Аргументы:
-#     id1 - идентификатор узла
+#     id_user - идентификатор узла
 #     description - описание кнопки
 #     buttons - название кнопки
 #     """
@@ -16,7 +16,7 @@ from dbConnect import *
 #     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
 #     try:
 #         with connect.cursor() as cursor:
-#             cursor.execute(dbInject, (id1, description, buttons))
+#             cursor.execute(dbInject, (id_user, description, buttons))
 #             cursor.execute("""select * from dot;""")
 #             print(cursor.fetchall())
 #             connect.commit()
@@ -26,11 +26,11 @@ from dbConnect import *
 #     # Отсоединяемся от базы данных
 #     connect.close()
 
-def add_user(id1, status, ege_points, position, old_position, connect):
+def add_user(vk_id, status, ege_points, position, old_position, connect):
     """ Добавить пользователя в таблицу пользователей в БД
 
     Аргументы:
-    id1 - идентификатор пользователя в вк
+    vk_id - идентификатор пользователя в вк
     status - категория пользователя
     ege_points - баллы ЕГЭ пользователя
     position - нынешняя позиция пользователя
@@ -43,7 +43,7 @@ def add_user(id1, status, ege_points, position, old_position, connect):
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (id1, status, ege_points, position, old_position))
+            cursor.execute(dbInject, (vk_id, status, ege_points, position, old_position))
             cursor.execute("""select * from user;""")
             print(cursor.fetchall())
             connect.commit()
@@ -51,11 +51,11 @@ def add_user(id1, status, ege_points, position, old_position, connect):
     except:
         print("Ошибка")
 
-def add_exam(id_user, name, points, connect):
+def add_exam(vk_id, name, points, connect):
     """ Добавить экзамен в таблицу экзаменов в БД
 
     Аргументы:
-    id_user - идентификатор пользователя в вк
+    vk_id - идентификатор пользователя в вк
     name - название экзамена
     points - баллы за экзамен
     connect - соединение с БД
@@ -66,7 +66,7 @@ def add_exam(id_user, name, points, connect):
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (str(id_user), name, str(points)))
+            cursor.execute(dbInject, (str(vk_id), name, str(points)))
             cursor.execute("""select * from exam;""")
             print(cursor.fetchall())
             connect.commit()
@@ -74,11 +74,11 @@ def add_exam(id_user, name, points, connect):
     except:
         print("Ошибка")
 
-def add_achievement(id_user, name, points, connect):
+def add_achievement(vk_id, name, points, connect):
     """ Добавить индивидуальное достижение в таблицу индивидуальных достижений в БД
 
     Аргументы:
-    id_user - идентификатор пользователя в вк
+    vk_id - идентификатор пользователя в вк
     name - название индивидуального достижения
     points - баллы за индивидуальное достижение
     connect - соединение с БД
@@ -89,7 +89,7 @@ def add_achievement(id_user, name, points, connect):
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (str(id_user), name, str(points)))
+            cursor.execute(dbInject, (str(vk_id), name, str(points)))
             cursor.execute("""select * from achievement;""")
             print(cursor.fetchall())
             connect.commit()
@@ -97,11 +97,11 @@ def add_achievement(id_user, name, points, connect):
     except:
         print("Ошибка")
 
-def add_speciality(id1, name, min_points):
+def add_speciality(id_spec, name, min_points):
     """ Добавить направление в таблицу направлений в БД
 
     Аргументы:
-    id1 - идентификатор направления
+    id_spec - идентификатор направления
     name - название направления
     min_points - минимальное кол-во баллов для поступление на направление
     """
@@ -113,7 +113,7 @@ def add_speciality(id1, name, min_points):
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (id1, name, min_points))
+            cursor.execute(dbInject, (vk_id, name, min_points))
             cursor.execute("""select * from speciality;""")
             print(cursor.fetchall())
             connect.commit()
@@ -123,12 +123,12 @@ def add_speciality(id1, name, min_points):
     # Отсоединяемся от базы данных
     connect.close()
 
-def update_user_ege_points(ege_points, id1):
+def update_user_ege_points(ege_points, vk_id):
     """Обновить баллы ЕГЭ пользователя в БД
 
     Аргументы:
     ege_points - нынешнее баллы ЕГЭ пользователя
-    id1 - идентификатор пользователя в вк
+    vk_id - идентификатор пользователя в вк
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update user set ege_points = %s where id = %s;"""
@@ -138,7 +138,7 @@ def update_user_ege_points(ege_points, id1):
     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbUpdate, (ege_points, id1))
+            cursor.execute(dbUpdate, (ege_points, vk_id))
             cursor.execute("""select * from user;""")
             print(cursor.fetchall())
             connect.commit()
@@ -148,12 +148,12 @@ def update_user_ege_points(ege_points, id1):
     # Отсоединяемся от базы данных
     connect.close()
 
-def update_user_status(status, id1, connect):
-    """Обновить статус пользователя в БД
+def update_user_status(status, vk_id, connect):
+    """Обновить категорию пользователя в БД
 
     Аргументы:
     status - категория пользователя
-    id1 - идентификатор пользователя в вк
+    vk_id - идентификатор пользователя в вк
     connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
@@ -162,7 +162,7 @@ def update_user_status(status, id1, connect):
     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbUpdate, (status, id1))
+            cursor.execute(dbUpdate, (status, vk_id))
             cursor.execute("""select * from user;""")
             print(cursor.fetchall())
             connect.commit()
@@ -170,12 +170,12 @@ def update_user_status(status, id1, connect):
     except:
         print("Ошибка")
 
-def update_exam_points(points, id1):
+def update_exam_points(points, vk_id):
     """Обновить баллы за индивидуальное достижение пользователя в БД
 
     Аргументы:
     points - нынешнее баллы за индивидуальное достижение пользователя
-    id1 - идентификатор пользователя в вк
+    vk_id - идентификатор пользователя в вк
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update exam set points = %s where id = %s;"""
@@ -185,7 +185,7 @@ def update_exam_points(points, id1):
     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbUpdate, (points, id1))
+            cursor.execute(dbUpdate, (points, vk_id))
             cursor.execute("""select * from exam;""")
             print(cursor.fetchall())
             connect.commit()
