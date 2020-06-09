@@ -261,8 +261,8 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = location
 
     elif location == 747:
-        if message == "Главное меню":
-            next_loc = 0
+        if message == "Информационный режим":
+            next_loc = 1
         else:
             next_loc = location
 
@@ -591,40 +591,40 @@ def nextNode(location, message, connect = None, vk_id=None):
     elif location == 2161:
         if message == "Назад":
             next_loc = 2151
-        elif message == "Главное меню":
-            next_loc = 0
+        elif message == "Информационный режим":
+            next_loc = 1
         else:
             next_loc = location
 
     elif location == 2162:
         if message == "Назад":
             next_loc = 2151
-        elif message == "Главное меню":
-            next_loc = 0
+        elif message == "Информационный режим":
+            next_loc = 1
         else:
             next_loc = location
 
     elif location == 2163:
         if message == "Назад":
             next_loc = 2151
-        elif message == "Главное меню":
-            next_loc = 0
+        elif message == "Информационный режим":
+            next_loc = 1
         else:
             next_loc = location
 
     elif location == 2164:
         if message == "Назад":
             next_loc = 2151
-        elif message == "Главное меню":
-            next_loc = 0
+        elif message == "Информационный режим":
+            next_loc = 1
         else:
             next_loc = location
 
     elif location == 2165:
         if message == "Назад":
             next_loc = 2151
-        elif message == "Главное меню":
-            next_loc = 0
+        elif message == "Информационный режим":
+            next_loc = 1
         else:
             next_loc = location
 
@@ -1046,7 +1046,7 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = {
             "one_time": True,
             "buttons": [
-                [getButton("Главное меню", color="secondary")]
+                [getButton("Информационный режим", color="secondary")]
             ]
         }
 
@@ -1097,7 +1097,7 @@ def newMess(loc_type,vk_id,connect):
     #     startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 222:
-        text = "Извините, вам не подходит наш факультет"
+        text = "Извините, в таком случае вам не подходит наш факультет. Для того чтобы поступить на него, необходимо сдать профильную математику и физику"
 
         startKeyboard = {
             "one_time": True,
@@ -1111,7 +1111,7 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 622:
-        text = "Для того, чтобы поступить на наш факультет необходимо сдать профильную математику и физику"
+        text = "Для того чтобы поступить на наш факультет, необходимо сдать профильную математику и физику"
 
         startKeyboard = {
             "one_time": True,
@@ -1439,7 +1439,7 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Назад", color="secondary")],
-                [getButton("Главное меню", color="secondary")]
+                [getButton("Информационный режим", color="secondary")]
             ]
         }
 
@@ -1453,7 +1453,7 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Назад", color="secondary")],
-                [getButton("Главное меню", color="secondary")]
+                [getButton("Информационный режим", color="secondary")]
             ]
         }
 
@@ -1467,7 +1467,7 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Назад", color="secondary")],
-                [getButton("Главное меню", color="secondary")]
+                [getButton("Информационный режим", color="secondary")]
             ]
         }
 
@@ -1481,7 +1481,7 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Назад", color="secondary")],
-                [getButton("Главное меню", color="secondary")]
+                [getButton("Информационный режим", color="secondary")]
             ]
         }
 
@@ -1537,7 +1537,7 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Назад", color="secondary")],
-                [getButton("Главное меню", color="secondary")]
+                [getButton("Информационный режим", color="secondary")]
             ]
         }
 
