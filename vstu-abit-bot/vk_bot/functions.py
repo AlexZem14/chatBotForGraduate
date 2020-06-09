@@ -23,12 +23,6 @@ def nextNode(location, message, connect = None, vk_id=None):
             # При ошибке указать прежнюю позицию
             next_loc = location
 
-    # if	location == 5010:
-    #     if message == "Привет":
-    #         next_loc = 0
-    #     else:
-    #         next_loc = location
-
     if location == 0:
         if message == "Информационный режим":
             next_loc = 1
@@ -310,27 +304,11 @@ def nextNode(location, message, connect = None, vk_id=None):
         else:
             next_loc = location
 
-    # elif location == 741:
-    #     if message == "Информация о вступительных испытаниях":
-    #         next_loc = 742
-    #     else:
-    #         next_loc = location
-
-
     elif location == 742:
         if message == "Понятно. Продолжим!":
             next_loc = 2118
         else:
             next_loc = location
-    # elif location == 40:
-    #     if message == "Информация о вступительных испытаниях":
-    #         next_loc = 2117
-    #     elif message == "Информация о довузовской подготовке":
-    #         next_loc = 1447
-    #     elif message == "Я сдавал ЕГЭ по профильным предметам":
-    #         next_loc = 241
-    #     else:
-    #         next_loc = location
 
     elif location == 60:
         if message == "Да":
@@ -339,14 +317,6 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = 622
         else:
             next_loc = location
-
-    # elif location == 221:
-    #     if message == "Да":
-    #         next_loc = 241
-    #     elif message == "Нет":
-    #         next_loc = 2118
-    #     else:
-    #         next_loc = location
 
     elif location == 222:
         if message == "Назад":
@@ -473,8 +443,6 @@ def nextNode(location, message, connect = None, vk_id=None):
             next_loc = 2151
         elif message == "Нет, я уже узнал все что хотел":
             next_loc = 0
-        # elif message == "Назад":
-        #     next_loc = 2117
         else:
             next_loc = location
 
@@ -562,18 +530,6 @@ def nextNode(location, message, connect = None, vk_id=None):
         else:
             next_loc = location
 
-    # elif location == 2135:
-    #     if message == "Да":
-    #         next_loc = 2151
-    #     elif message == "Нет, я уже узнал все что хотел":
-    #         next_loc = 0
-    #     elif message == "Назад":
-    #         next_loc = 2121
-    #     elif message == "Подробнее о стоимости обучения":
-    #         next_loc = 2122
-    #     else:
-    #         next_loc = location
-
     elif location == 2151:
         if message == "Документы для поступления":
             next_loc = 2161
@@ -643,11 +599,6 @@ def newMess(loc_type,vk_id,connect):
     text = ""
 
     # Если тип узла относится к началу работы с программой
-    # if loc_type == 5010:
-    #     text = "Привет"
-
-    #     startKeyboard = None
-
     if loc_type == 501:
         text = "Чат-бот имеет два режима – информационный и интерактивный. Информационный режим оформлен в форме справки для абитуриентов. В интерактивном режиме общение бота похоже на диалог с пользователем с выбором вариантов ответа и вводом данных.\nВвод данных осуществляется только там, где необходимо указать баллы ЕГЭ. В остальных местах взаимодействие с чат-ботом происходит с помощью кнопок.\nЕсли вы вводите некорректное значение в поле ввода, то дублируется последнее сообщение бота"
         startKeyboard = {
@@ -1053,21 +1004,6 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
-    # elif loc_type == 40:
-    #     text = "Что вас интересует?"
-
-    #     startKeyboard = {
-    #         "one_time": True,
-    #         "buttons": [
-    #             [getButton("Информация о вступительных испытаниях", color="primary")],
-    #             [getButton("Информация о довузовской подготовке", color="primary")],
-    #             [getButton("Я сдавал ЕГЭ по профильным предметам", color="primary")]
-    #         ]
-    #     }
-
-    #     startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
-    #     startKeyboard = str(startKeyboard.decode("utf-8"))
-
     elif loc_type == 60:
         text = "Вы собираетесь сдавать в качестве экзаменов ЕГЭ профильную математику и физику?"
 
@@ -1081,20 +1017,6 @@ def newMess(loc_type,vk_id,connect):
 
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
-
-    # elif loc_type == 221:
-    #     text = "Вы уже сдали ЕГЭ?"
-
-    #     startKeyboard = {
-    #         "one_time": True,
-    #         "buttons": [
-    #             [getButton("Да", color="primary")],
-    #             [getButton("Нет", color="primary")]
-    #         ]
-    #     }
-
-    #     startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
-    #     startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 222:
         text = "Извините, в таком случае вам не подходит наш факультет. Для того чтобы поступить на него, необходимо сдать профильную математику и физику"
@@ -1138,20 +1060,6 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
-    # elif loc_type == 6411:
-    #     text = "Да"
-
-    #     startKeyboard = {
-    #         "one_time": True,
-    #         "buttons": [
-    #             [getButton("Да", color="primary")],
-    #             [getButton("Нет", color="primary")]
-    #         ]
-    #     }
-
-        # startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
-        # startKeyboard = str(startKeyboard.decode("utf-8"))
-
     elif loc_type == 241:
         text = "У вас есть аттестат с отличием (золотая медаль) \nили диплом о среднем профессиональном образовании с отличием \nили статус победителя или призера крупных международных спортивных соревнований?"
 
@@ -1179,19 +1087,6 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
-    # elif loc_type == 741:
-    #     text = "Информация о вступительных испытаниях"
-
-    #     startKeyboard = {
-    #         "one_time": True,
-    #         "buttons": [
-    #             [getButton("Информация о вступительных испытаниях", color="primary")]
-    #         ]
-    #     }
-
-    #     startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
-    #     startKeyboard = str(startKeyboard.decode("utf-8"))
-    
     elif loc_type == 742:
         text = "Информация о вступительных испытаниях:\nhttp://welcome.vstu.ru/acceptance/vstupitelnye-ispytaniya/"
 
@@ -1301,7 +1196,6 @@ def newMess(loc_type,vk_id,connect):
                 [getButton("Подробнее о направлениях", color="primary")],
                 [getButton("Да", color="positive")],
                 [getButton("Нет, я уже узнал все что хотел", color="negative")]
-                #[getButton("Назад", color="primary")]
             ]
         }
 
@@ -1383,22 +1277,6 @@ def newMess(loc_type,vk_id,connect):
 
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
-
-    # elif loc_type == 2135:
-    #     text = "Вам что-то еще хотелось бы узнать?"
-
-    #     startKeyboard = {
-    #         "one_time": True,
-    #         "buttons": [
-    #             [getButton("Да", color="primary")],
-    #             [getButton("Нет, я уже узнал все что хотел", color="primary")],
-    #             [getButton("Подробнее о стоимости обучения", color="primary")],
-    #             [getButton("Назад", color="primary")]
-    #         ]
-    #     }
-
-    #     startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
-    #     startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 2141:
         text = "Вам бы хотелось узнать что-то еще?"

@@ -1,31 +1,6 @@
 import pymysql
 from dbConnect import *
 
-# def add_dot(id_user, description, buttons):
-#     """ Добавить узел в таблицу узлов БД
-
-#     Аргументы:
-#     id_user - идентификатор узла
-#     description - описание кнопки
-#     buttons - название кнопки
-#     """
-#     # Подготавливаем SQL запрос для передачи его базе данных
-#     dbInject = """insert into dot (id, description, buttons) values (%s, %s, %s);"""
-#     # Соединяемся с базой данных
-#     connect = getConnection()
-#     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
-#     try:
-#         with connect.cursor() as cursor:
-#             cursor.execute(dbInject, (id_user, description, buttons))
-#             cursor.execute("""select * from dot;""")
-#             print(cursor.fetchall())
-#             connect.commit()
-#     # В случае неудачи оповещаем об ошибке
-#     except:
-#         print("Ошибка")
-#     # Отсоединяемся от базы данных
-#     connect.close()
-
 def add_user(vk_id, status, ege_points, position, old_position, connect):
     """ Добавить пользователя в таблицу пользователей в БД
 
