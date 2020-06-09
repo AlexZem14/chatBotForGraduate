@@ -97,18 +97,17 @@ def add_achievement(vk_id, name, points, connect):
     except:
         print("Ошибка")
 
-def add_speciality(id_spec, name, min_points):
+def add_speciality(id_spec, name, min_points, connect):
     """ Добавить направление в таблицу направлений в БД
 
     Аргументы:
     id_spec - идентификатор направления
     name - название направления
     min_points - минимальное кол-во баллов для поступление на направление
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into speciality (id, name, min_points) values (%s, %s, %s);"""
-    # Соединяемся с базой данных
-    connect = getConnection()
 
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
@@ -120,20 +119,17 @@ def add_speciality(id_spec, name, min_points):
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
-def update_user_ege_points(ege_points, vk_id):
+def update_user_ege_points(ege_points, vk_id, connect):
     """Обновить баллы ЕГЭ пользователя в БД
 
     Аргументы:
     ege_points - нынешнее баллы ЕГЭ пользователя
     vk_id - идентификатор пользователя в вк
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update user set ege_points = %s where id = %s;"""
-    # Соединяемся с базой данных
-    connect = getConnection()
 
     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
@@ -145,8 +141,6 @@ def update_user_ege_points(ege_points, vk_id):
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
 def update_user_status(status, vk_id, connect):
     """Обновить категорию пользователя в БД
@@ -170,17 +164,16 @@ def update_user_status(status, vk_id, connect):
     except:
         print("Ошибка")
 
-def update_exam_points(points, vk_id):
+def update_exam_points(points, vk_id, connect):
     """Обновить баллы за индивидуальное достижение пользователя в БД
 
     Аргументы:
     points - нынешнее баллы за индивидуальное достижение пользователя
     vk_id - идентификатор пользователя в вк
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update exam set points = %s where id = %s;"""
-    # Соединяемся с базой данных
-    connect = getConnection()
 
     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
@@ -192,20 +185,17 @@ def update_exam_points(points, vk_id):
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
-def delete_exam(user_exam, user_id):
+def delete_exam(user_exam, user_id, connect):
     """Удалить экзамен пользователя из БД
 
     Аргументы:
     user_exam - экзамен пользователя
     user_id - идентификатор пользователя в вк
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbDelete = """delete from exam where name = %s and id_user = %s;"""
-    # Соединяемся с базой данных
-    connect = getConnection()
 
     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
@@ -217,20 +207,17 @@ def delete_exam(user_exam, user_id):
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
-def delete_achievement(user_achievement, user_id):
+def delete_achievement(user_achievement, user_id, connect):
     """Удалить индивидуальное достижение пользователя из БД
 
     Аргументы:
     user_achievement - индивидуальное достижение пользователя
     user_id - идентификатор пользователя в вк
+    connect - соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbDelete = """delete from achievement where name = %s and id_user = %s;"""
-    # Соединяемся с базой данных
-    connect = getConnection()
     
     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
@@ -242,8 +229,6 @@ def delete_achievement(user_achievement, user_id):
     # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка")
-    # Отсоединяемся от базы данных
-    connect.close()
 
 def user_update_position(vk_id, location, connect):
     """Обновить позицию пользователя
@@ -298,27 +283,24 @@ def get_old_loc(vk_id, connect):
         print("Ошибка при получении прежней позиции пользователя")
     return 0
 
-# def delete_user(user_id):
-#     """Удалить пользователя из БД ctrl+/
+def delete_user(vk_id, connect):
+    """Удалить пользователя из БД
 
-#     Аргументы:
-#     user_id - идентификатор пользователя в вк
-#     """
-#     # Подготавливаем SQL запрос для передачи его базе данных
-#     dbDelete = """delete from user where id = %s;"""
-#     # Соединяемся с базой данных
-#     connect = getConnection()
+    Аргументы:
+    user_id - идентификатор пользователя в вк
+    connect - соединение с БД
+    """
+    # Подготавливаем SQL запрос для передачи его базе данных
+    dbDelete = """delete from user where id = %s;"""
 
-#     # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
-#     try:
-#         with connect.cursor() as cursor:
-#             cursor.execute(dbDelete, (user_id))
-#             cursor.execute("""select * from user;""")
-#             print(cursor.fetchall())
-#             connect.commit()
-#     # В случае неудачи оповещаем об ошибке
-#     except:
-#         print("Ошибка")
-#     # Отсоединяемся от базы данных
-#     connect.close()
+    # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
+    try:
+        with connect.cursor() as cursor:
+            cursor.execute(dbDelete, (vk_id))
+            cursor.execute("""select * from user;""")
+            print(cursor.fetchall())
+            connect.commit()
+    # В случае неудачи оповещаем об ошибке
+    except:
+        print("Ошибка")
     
