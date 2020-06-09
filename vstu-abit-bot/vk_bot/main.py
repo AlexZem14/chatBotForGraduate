@@ -38,7 +38,7 @@ while True:
                         cursor.execute(messageDbBot, str(vk_id))
                         # Передать информацию о пользователе переменной
                         loc = cursor.fetchall()
-                        if message.lower() == "начать" and len(loc) == 0:
+                        if len(loc) == 0:
                             add_user(vk_id, None, None, 501, 501, connect=connect)
                             new_loc = 501
                             loc = new_loc
