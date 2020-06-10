@@ -2,15 +2,14 @@ import pymysql
 from dbConnect import *
 
 def add_user(vk_id, status, ege_points, position, old_position, connect):
-    """ Добавить пользователя в таблицу пользователей в БД
-
-    Аргументы:
-    vk_id - идентификатор пользователя в вк
-    status - категория пользователя
-    ege_points - баллы ЕГЭ пользователя
-    position - нынешняя позиция пользователя
-    old_position - позиция, в которой находился пользователь на прошлом шаге
-    connect - соединение с БД
+    """
+    Добавить пользователя в таблицу пользователей в БД
+    :param vk_id: идентификатор пользователя в вк
+    :param status: категория пользователя
+    :param ege_points: баллы ЕГЭ пользователя
+    :param position: нынешняя позиция пользователя
+    :param old_position: позиция, в которой находился пользователь на прошлом шаге
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into user (id, status, ege_points, position, old_position) values (%s, %s, %s, %s, %s);"""
@@ -27,13 +26,12 @@ def add_user(vk_id, status, ege_points, position, old_position, connect):
         print("Ошибка")
 
 def add_exam(vk_id, name, points, connect):
-    """ Добавить экзамен в таблицу экзаменов в БД
-
-    Аргументы:
-    vk_id - идентификатор пользователя в вк
-    name - название экзамена
-    points - баллы за экзамен
-    connect - соединение с БД
+    """
+    Добавить экзамен в таблицу экзаменов в БД
+    :param vk_id: идентификатор пользователя в вк
+    :param name: название экзамена
+    :param points: баллы за экзамен
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into exam (id_user, name, points) values (%s, %s, %s);"""
@@ -50,13 +48,12 @@ def add_exam(vk_id, name, points, connect):
         print("Ошибка")
 
 def add_achievement(vk_id, name, points, connect):
-    """ Добавить индивидуальное достижение в таблицу индивидуальных достижений в БД
-
-    Аргументы:
-    vk_id - идентификатор пользователя в вк
-    name - название индивидуального достижения
-    points - баллы за индивидуальное достижение
-    connect - соединение с БД
+    """
+    Добавить индивидуальное достижение в таблицу индивидуальных достижений в БД
+    :param vk_id: идентификатор пользователя в вк
+    :param name: название индивидуального достижения
+    :param points: название индивидуального достижения
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into achievement (id_user, name, points) values (%s, %s, %s);"""
@@ -73,13 +70,12 @@ def add_achievement(vk_id, name, points, connect):
         print("Ошибка")
 
 def add_speciality(id_spec, name, min_points, connect):
-    """ Добавить направление в таблицу направлений в БД
-
-    Аргументы:
-    id_spec - идентификатор направления
-    name - название направления
-    min_points - минимальное кол-во баллов для поступление на направление
-    connect - соединение с БД
+    """
+    Добавить направление в таблицу направлений в БД
+    :param id_spec: идентификатор направления
+    :param name: название направления
+    :param min_points: минимальное кол-во баллов для поступление на направление
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbInject = """insert into speciality (id, name, min_points) values (%s, %s, %s);"""
@@ -87,7 +83,7 @@ def add_speciality(id_spec, name, min_points, connect):
     # Передаем запрос на добавление элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
-            cursor.execute(dbInject, (vk_id, name, min_points))
+            cursor.execute(dbInject, (id_spec, name, min_points))
             cursor.execute("""select * from speciality;""")
             print(cursor.fetchall())
             connect.commit()
@@ -96,12 +92,11 @@ def add_speciality(id_spec, name, min_points, connect):
         print("Ошибка")
 
 def update_user_ege_points(ege_points, vk_id, connect):
-    """Обновить баллы ЕГЭ пользователя в БД
-
-    Аргументы:
-    ege_points - нынешнее баллы ЕГЭ пользователя
-    vk_id - идентификатор пользователя в вк
-    connect - соединение с БД
+    """
+    Обновить баллы ЕГЭ пользователя в БД
+    :param ege_points: нынешнее баллы ЕГЭ пользователя
+    :param vk_id: идентификатор пользователя в вк
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update user set ege_points = %s where id = %s;"""
@@ -118,12 +113,11 @@ def update_user_ege_points(ege_points, vk_id, connect):
         print("Ошибка")
 
 def update_user_status(status, vk_id, connect):
-    """Обновить категорию пользователя в БД
-
-    Аргументы:
-    status - категория пользователя
-    vk_id - идентификатор пользователя в вк
-    connect - соединение с БД
+    """
+    Обновить категорию пользователя в БД
+    :param status: категория пользователя
+    :param vk_id: идентификатор пользователя в вк
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update user set status = %s where id = %s;"""
@@ -140,12 +134,11 @@ def update_user_status(status, vk_id, connect):
         print("Ошибка")
 
 def update_exam_points(points, vk_id, connect):
-    """Обновить баллы за индивидуальное достижение пользователя в БД
-
-    Аргументы:
-    points - нынешнее баллы за индивидуальное достижение пользователя
-    vk_id - идентификатор пользователя в вк
-    connect - соединение с БД
+    """
+    Обновить баллы за индивидуальное достижение пользователя в БД
+    :param points: нынешнее баллы за индивидуальное достижение пользователя
+    :param vk_id: идентификатор пользователя в вк
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update exam set points = %s where id = %s;"""
@@ -162,12 +155,11 @@ def update_exam_points(points, vk_id, connect):
         print("Ошибка")
 
 def delete_exam(user_exam, user_id, connect):
-    """Удалить экзамен пользователя из БД
-
-    Аргументы:
-    user_exam - экзамен пользователя
-    user_id - идентификатор пользователя в вк
-    connect - соединение с БД
+    """
+    Удалить экзамен пользователя из БД
+    :param user_exam: экзамен пользователя
+    :param user_id: идентификатор пользователя в вк
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbDelete = """delete from exam where name = %s and id_user = %s;"""
@@ -184,12 +176,11 @@ def delete_exam(user_exam, user_id, connect):
         print("Ошибка")
 
 def delete_achievement(user_achievement, user_id, connect):
-    """Удалить индивидуальное достижение пользователя из БД
-
-    Аргументы:
-    user_achievement - индивидуальное достижение пользователя
-    user_id - идентификатор пользователя в вк
-    connect - соединение с БД
+    """
+    Удалить индивидуальное достижение пользователя из БД
+    :param user_achievement: индивидуальное достижение пользователя
+    :param user_id: идентификатор пользователя в вк
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbDelete = """delete from achievement where name = %s and id_user = %s;"""
@@ -206,64 +197,69 @@ def delete_achievement(user_achievement, user_id, connect):
         print("Ошибка")
 
 def user_update_position(vk_id, location, connect):
-    """Обновить позицию пользователя
-
-    Аргументы:
-    vk_id - идентификатор пользователя в вк
-    location - позиция пользователя 
-    connect - соединение с БД
     """
+    Обновить позицию пользователя
+    :param vk_id: идентификатор пользователя в вк
+    :param location: позиция пользователя
+    :param connect: соединение с БД
+    """
+    # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update user set position = %s where id = %s;"""
 
+    # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
             cursor.execute(dbUpdate, (location, str(vk_id)))
             connect.commit()
+    # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка при обновлении позиции пользователя")
 
 
 def user_update_old_position(vk_id, old_location, connect):
-    """Обновить прежнюю позицию пользователя
-
-    Аргументы:
-    vk_id - идентификатор пользователя в вк
-    old_location - прежняя позиция пользователя 
-    connect - соединение с БД
     """
+    Обновить прежнюю позицию пользователя
+    :param vk_id: идентификатор пользователя в вк
+    :param old_location: прежняя позиция пользователя
+    :param connect: соединение с БД
+    """
+    # Подготавливаем SQL запрос для передачи его базе данных
     dbUpdate = """update user set old_position = %s where id = %s;"""
 
+    # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
             cursor.execute(dbUpdate, (old_location, str(vk_id)))
             connect.commit()
+    # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка при обновлении прежней позиции пользователя")
 
 
 def get_old_loc(vk_id, connect):
-    """Получить прежнюю позицию пользователя
-
-    Аргументы:
-    vk_id - идентификатор пользователя в вк
-    connect - соединение с БД
     """
+    Получить прежнюю позицию пользователя
+    :param vk_id: идентификатор пользователя в вк
+    :param connect: соединение с БД
+    """
+    # Подготавливаем SQL запрос для передачи его базе данных
     dbSelect = """select * from user where id = %s"""
 
+    # Передаем запрос на изменение элемента, выводим его в терминал и фиксируем в бд
     try:
         with connect.cursor() as cursor:
             cursor.execute(dbSelect, str(vk_id))
             return cursor.fetchall()[0]["old_position"]
+    # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка при получении прежней позиции пользователя")
     return 0
 
 def delete_user(vk_id, connect):
-    """Удалить пользователя из БД
-
-    Аргументы:
-    user_id - идентификатор пользователя в вк
-    connect - соединение с БД
+    """
+    Удалить пользователя из БД
+    :param vk_id: идентификатор пользователя в вк
+    :param connect: соединение с БД
     """
     # Подготавливаем SQL запрос для передачи его базе данных
     dbDelete = """delete from user where id = %s;"""
