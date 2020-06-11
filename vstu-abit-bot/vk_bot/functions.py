@@ -941,7 +941,7 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Выпускник школы", color="primary")],
-                [getButton("Студент другого вуза", color="primary")],
+                #[getButton("Студент другого вуза", color="primary")],
                 [getButton("Студент колледжа", color="primary")],
                 [getButton("Выпускник вуза", color="primary")],
                 [getButton("Ученик школы", color="primary")]
