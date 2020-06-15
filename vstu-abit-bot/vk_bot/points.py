@@ -115,16 +115,16 @@ def getAllPoints(vk_id, connect):
         print("Ошибка при получении баллов ЕГЭ")
     return int(points)
 
-# def maxPointsSpeciality(vk_id, connect):
-#     maxPoints = 0
-#     selectDB = """select max(min_points) from speciality;"""
-#     try:
-#         with connect.cursor() as cursor:
-#             cursor.execute(selectDB, str(vk_id))
-#             maxPoints = cursor.fetchall()[0]["min_points"]
-#     except:
-#         print("Ошибка при получении проходных баллов")
-#     return int(maxPoints)
+def maxPointsSpeciality(vk_id, connect):
+    maxPoints = 0
+    selectDB = """select max(min_points) from speciality;"""
+    try:
+        with connect.cursor() as cursor:
+            cursor.execute(selectDB)
+            maxPoints = cursor.fetchall()[0]["max(min_points)"]
+    except:
+        print("Ошибка при получении проходных баллов")
+    return int(maxPoints)
 
 def choiceSpeciality(vk_id, connect):
     """

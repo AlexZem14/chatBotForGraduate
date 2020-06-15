@@ -410,11 +410,21 @@ def nextNode(location, message, connect = None, vk_id=None):
 
     elif location == 2117:
         if message == "Понятно. Продолжим!":
-            next_loc = 2118
+            next_loc = 2119
         else:
             next_loc = location
 
     elif location == 2118:
+        if message == "Подробнее о направлениях":
+            next_loc = 2121
+        elif message == "Подробнее о стоимости обучения":
+            next_loc = 2122
+        elif message == "Не хочу":
+            next_loc = 2141
+        else:
+            next_loc = location
+
+    elif location == 2119:
         if message == "Подробнее о направлениях":
             next_loc = 2121
         elif message == "Подробнее о стоимости обучения":
@@ -941,9 +951,9 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Выпускник школы", color="primary")],
-                #[getButton("Студент другого вуза", color="primary")],
+                [getButton("Студент другого вуза", color="primary")],
                 [getButton("Студент колледжа", color="primary")],
-                [getButton("Выпускник вуза", color="primary")],
+                #[getButton("Выпускник вуза", color="primary")],
                 [getButton("Ученик школы", color="primary")]
             ]
         }
@@ -1184,6 +1194,23 @@ def newMess(loc_type,vk_id,connect):
             ]
         }
 
+        startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
+        startKeyboard = str(startKeyboard.decode("utf-8"))
+
+    elif loc_type == 2119:
+        maxSpecPoints = []    
+        text = "Хотите узнать подробней о направлениях?"
+        maxSpecPoints.append([getButton("Подробнее о направлениях", color="primary")])
+        if maxPointsSpeciality (vk_id, connect) > getAllPoints (vk_id, connect):
+            text = "Хотите узнать подробней о направлениях или стоимости обучения?"
+            maxSpecPoints.append([getButton("Подробнее о стоимости обучения", color="primary")])
+        maxSpecPoints.append([getButton("Не хочу", color="negative")])
+        startKeyboard = {
+            "one_time": True,
+            "buttons": maxSpecPoints
+        }
+
+        
         startKeyboard = json.dumps(startKeyboard, ensure_ascii=False).encode("utf-8")
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
