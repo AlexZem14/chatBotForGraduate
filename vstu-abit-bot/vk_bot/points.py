@@ -115,13 +115,20 @@ def getAllPoints(vk_id, connect):
         print("Ошибка при получении баллов ЕГЭ")
     return int(points)
 
-def maxPointsSpeciality(vk_id, connect):
+def maxPointsSpeciality(connect):
+    """
+    Получить максимальный проходной балл среди всех направлений
+    :param connect: соединение с БД
+    :return: максимальный проходной балл среди всех направлений
+    """
     maxPoints = 0
+    # Подготавливаем SQL запрос для передачи его базе данных
     selectDB = """select max(min_points) from speciality;"""
     try:
         with connect.cursor() as cursor:
             cursor.execute(selectDB)
             maxPoints = cursor.fetchall()[0]["max(min_points)"]
+    # В случае неудачи оповещаем об ошибке
     except:
         print("Ошибка при получении проходных баллов")
     return int(maxPoints)

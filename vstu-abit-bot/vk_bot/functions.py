@@ -1201,7 +1201,7 @@ def newMess(loc_type,vk_id,connect):
         maxSpecPoints = []    
         text = "Хотите узнать подробней о направлениях?"
         maxSpecPoints.append([getButton("Подробнее о направлениях", color="primary")])
-        if maxPointsSpeciality (vk_id, connect) > getAllPoints (vk_id, connect):
+        if maxPointsSpeciality (connect) > getAllPoints (vk_id, connect):
             text = "Хотите узнать подробней о направлениях или стоимости обучения?"
             maxSpecPoints.append([getButton("Подробнее о стоимости обучения", color="primary")])
         maxSpecPoints.append([getButton("Не хочу", color="negative")])
