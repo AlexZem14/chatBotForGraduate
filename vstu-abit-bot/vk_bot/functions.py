@@ -951,10 +951,11 @@ def newMess(loc_type,vk_id,connect):
             "one_time": True,
             "buttons": [
                 [getButton("Выпускник школы", color="primary")],
-                [getButton("Студент другого вуза", color="primary")],
                 [getButton("Студент колледжа", color="primary")],
+                [getButton("Ученик школы", color="primary")],
+                [getButton("Студент другого вуза", color="primary")]
                 #[getButton("Выпускник вуза", color="primary")],
-                [getButton("Ученик школы", color="primary")]
+                
             ]
         }
 
@@ -1029,7 +1030,7 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 222:
-        text = "Извините, в таком случае вам не подходит наш факультет. Для того чтобы поступить на него, необходимо сдать профильную математику и физику"
+        text = "Извините, в таком случае вам не подходит наш факультет. Для того чтобы поступить на него, необходимо сдать профильную математику, физику и русский язык"
 
         startKeyboard = {
             "one_time": True,
@@ -1043,7 +1044,7 @@ def newMess(loc_type,vk_id,connect):
         startKeyboard = str(startKeyboard.decode("utf-8"))
 
     elif loc_type == 622:
-        text = "Для того чтобы поступить на наш факультет, необходимо сдать профильную математику и физику"
+        text = "Для того чтобы поступить на наш факультет, необходимо сдать профильную математику, физику и русский язык"
 
         startKeyboard = {
             "one_time": True,
